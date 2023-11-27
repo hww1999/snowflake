@@ -100,7 +100,7 @@ ORDER BY
     Week_Start_Date;
 
 
-4. Monthly Temperatures
+3. Monthly Temperatures
 
 CREATE TABLE monthly_weather_data AS
 SELECT 
