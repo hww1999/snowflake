@@ -64,7 +64,7 @@ ORDER BY
 
 1. Daily Temperatures
 
-CREATE TABLE daily_weather_data AS
+CREATE OR REPLACE TABLE daily_weather_data AS
 SELECT
     DATE_TRUNC('day', TIMESTAMP) AS Date,
     AVG(CLDCVR) AS Avg_CLDCVR,
@@ -81,7 +81,7 @@ ORDER BY Date;
 
 2. Weekly Temperatures
 
-CREATE TABLE weekly_weather_data AS
+CREATE OR REPLACE TABLE weekly_weather_data AS
 SELECT 
     DATE_TRUNC('week', TIMESTAMP) AS Week_Start_Date,
     AVG(CLDCVR) AS Avg_CLDCVR,
@@ -102,7 +102,7 @@ ORDER BY
 
 3. Monthly Temperatures
 
-CREATE TABLE monthly_weather_data AS
+CREATE OR REPLACE TABLE monthly_weather_data AS
 SELECT 
     DATE_TRUNC('month', TIMESTAMP) AS Month_Start_Date,
     AVG(CLDCVR) AS Avg_CLDCVR,
