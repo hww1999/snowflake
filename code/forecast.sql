@@ -22,3 +22,5 @@ CALL month_forecast!FORECAST(
 --                                     TARGET_COLNAME => 'sales'
 --                                    );
 -- how to create multiple variables
+
+-- system defined function error: [mlusererror] unsupported feature type for feature curr_avg. we currently only support numeric or string type exogenous features. in function _fit
