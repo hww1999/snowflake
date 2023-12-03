@@ -13,6 +13,12 @@ CALL month_forecast!FORECAST(
   TIMESTAMP_COLNAME => 'Month_Start_Date'
 );
 
+-- how to create graph for results
+SELECT Week_Start_Date AS ts, AVG_TEMP AS actual, NULL AS forecast, NULL AS lower_bound, NULL AS upper_bound
+  FROM weekly_true
+UNION ALL
+SELECT ts, NULL AS actual, forecast, lower_bound, upper_bound
+  FROM TABLE(RESULT_SCAN(-1));
 -- how to create multiple variables
 -- CREATE OR REPLACE VIEW v3 AS SELECT [store_id, item] AS store_item, date, sales FROM sales_data;
 -- SELECT * FROM v3;
