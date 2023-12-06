@@ -18,6 +18,7 @@ from snowflake.ml.modeling.metrics import mean_absolute_percentage_error, mean_s
 import numpy as np
 import json
 import joblib
+import time
 
 def main(session: snowpark.Session): 
     # Your code goes here, inside the "main" handler.
@@ -30,6 +31,7 @@ def main(session: snowpark.Session):
     
     train_df, test_df = dataframe.random_split(weights=[0.8, 0.2], seed=0)
     
+    start_time_build = time.time()
     regressor = XGBRegressor(
         input_cols=features,
         label_cols=label,
@@ -38,10 +40,15 @@ def main(session: snowpark.Session):
     
     # Train
     regressor.fit(train_df)
-    
+    build_time = time.time() - start_time_build
+
+    start_time_pred = time.time()
     # Predict
     result = regressor.predict(test_df)
+    pred_time = time.time() - start_time_pred
     # Return value will appear in the Results tab.
+    print('Building the model takes', build_time)
+    print('Prediction takes', pred_time)
     return result
 
 if __name__ == "__main__":
